@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: yashdantest
+  namespace: com-att-ocnp-mgmt
+spec:
+  replicas: 1
+  selector:
+    app: yashdantest
+  template:
+    metadata:
+      labels:
+        app: yashdantest
+    spec:
+      serviceAccount: YOUR
+      containers:
+      - name: yashdantest
+        image: ${docker-registry}/${docker-namespace}/yashdantest:latest
+        imagePullPolicy: Always
+        ports:
+         - containerPort: 8080
